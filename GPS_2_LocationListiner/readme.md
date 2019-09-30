@@ -1,1 +1,4 @@
-![alt text](https://github.com/soumitya0/LocationListener_add_Location_Databases/blob/master/ReadMe/GPS_TRACKING_DB.png)<br>
+![alt text](https://github.com/soumitya0/GPS/blob/master/GPS_2_LocationListiner/output/1.PNG)<br>
+<b>Now we are changing the latitude and longitude<b><br>
+
+![alt text](https://github.com/soumitya0/GPS/blob/master/GPS_2_LocationListiner/output/2.PNG)<br>
