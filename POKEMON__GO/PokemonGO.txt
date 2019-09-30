@@ -1,0 +1,126 @@
+ When we are move the map if bring to the same postion (Current Location)?
+
+ -> Beacuse of While loop ,while loop is moving  allways and it try to update the map
+  and get the location. So we dont't want to update the map allways ,we want to update the map only   when we move so we have to add old location
+
+ when we change the location we will update the map
+
+
+  	Location oldLocation;
+    class myThread extends Thread{
+        myThread(){
+            oldLocation= new Location("Start");
+            oldLocation.setLatitude(0);
+            oldLocation.setLongitude(0);
+        }
+        public void run(){
+            while (true) try {
+                //Thread.sleep(1000);
+
+                // new value of location is coming 
+                if (oldLocation.distanceTo(MyLocationListener.location) == 0)  // == 0 this mean that they are on same location dont't go continue because they are on same location
+                {
+                    continue;
+                }
+                //setting oldLocation with the new Location(MyLocationListener)
+                oldLocation = MyLocationListener.location;
+
+
+     Thread.sleep(1000);
+     this  means after one second  he is chacking is this is new not new location he will continue and sleep again
+     if location is different from oldLocation he will update oldLoacation 
+        
+
+
+Catch?
+When we move toward the map and reached to the pokemon, that pokemon will hide from the map and the power of that pokemon will add to the user power(ash)
+
+so the user power 
+    double MyPower=0;
+
+THIS IS ADD ALL THE POKEMON FROM THE (Pokemon.java)
+ for (int i = 0; i < listOfPockemon.size(); i++)
+                            {
+                                pockemon pockemon = listOfPockemon.get(i);
+
+                                LatLng pockemonLocation =
+                                        new LatLng(pockemon.location.getLatitude(), pockemon.location.getLongitude());
+                                map.addMarker(new MarkerOptions()
+                                        .position(pockemonLocation)
+                                        .title(pockemon.name)
+                                        .snippet(pockemon.dec + "\n" + "Power:" + pockemon.power))
+                                        .setIcon(BitmapDescriptorFactory.fromResource(pockemon.image));
+
+
+                            }
+
+we don't want to show all the pokemon .BUT WE ONLY WANT TO SHOW THAT POKEMON THAT IS NOT CATCH
+               
+               ***********************************************        
+                *        if (pockemon.isCatch == false) 
+                *           {
+                *
+                *           }
+                ***********************************************
+
+ ** MAIN CODE **    
+                            for (int i = 0; i < ListPockemons.size(); i++)                                 
+                            {
+                                Pockemon pockemon = ListPockemons.get(i);
+
+                                if (pockemon.isCatch == false)                                              ** HERE IS NOT CATCH POKEMON **   
+                                {
+                                    LatLng pockemonlocation =
+                                        new LatLng(pockemon.location.getLatitude(), pockemon.location.getLongitude());
+                                        mMap.addMarker(new MarkerOptions().position(pockemonlocation)
+                                        .title(pockemon.name)
+                                        .snippet(pockemon.des + ",power:" + pockemon.power)
+                                        .icon(BitmapDescriptorFactory.fromResource(pockemon.Image)
+                                        ));
+
+                                } 
+                             }    
+
+
+How we Catch the pokemon ?
+
+**use CODE**                ***********************************************************************************************
+                            *    if (MyLocationListener.location.distanceTo(pockemon.location) < 2)
+                            *     {
+                            *        MyPower = MyPower + pockemon.power;
+                            *        Toast.makeText(MapsActivity.this, "Catch Pockemon, new power is" + MyPower,
+                            *                Toast.LENGTH_SHORT).show();
+                            *        pockemon.isCatch = true;
+                            *        ListPockemons.set(i, pockemon);
+                            *      }
+                            ************************************************************************************************ 
+
+
+*MAIN CODE *
+                    for (int i = 0; i < ListPockemons.size(); i++)
+                        {
+                            Pockemon pockemon = ListPockemons.get(i);
+
+                            if (pockemon.isCatch == false)
+                             {
+                                LatLng pockemonlocation =
+                                        new LatLng(pockemon.location.getLatitude(), pockemon.location.getLongitude());
+                              marker= mMap.addMarker(new MarkerOptions().position(pockemonlocation)
+                                        .title(pockemon.name)
+                                        .snippet(pockemon.des + ",power:" + pockemon.power)
+                                        .icon(BitmapDescriptorFactory.fromResource(pockemon.Image)
+                                        ));
+
+                                // catch the pockemn
+                                if (MyLocationListener.location.distanceTo(pockemon.location) < 2) 
+                                {
+                                    MyPower = MyPower + pockemon.power;
+                                    marker.remove();                                        // removing the postion 
+                                    Toast.makeText(MapsActivity.this, "Catch Pockemon, new power is" + MyPower,
+                                            Toast.LENGTH_SHORT).show();
+                                    pockemon.isCatch = true;
+
+                                }
+
+                            }
+                         }                            
