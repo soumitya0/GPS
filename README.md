@@ -27,7 +27,7 @@
 
 # POKEMON GO
 
-[alt text](https://github.com/soumitya0/POKEMON-TRAVEL/blob/master/1.PNG)<br>
+![alt text](https://github.com/soumitya0/POKEMON-TRAVEL/blob/master/1.PNG)<br>
 
  clcik here for pokemon go:https://github.com/soumitya0/POKEMON-TRAVEL
  
